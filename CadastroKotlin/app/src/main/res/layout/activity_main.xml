@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+
+    <!--
+    Configurações iniciais LinearLayout:
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+    -->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+    >
+
+        <EditText
+                android:layout_width="match_parent"
+                android:hint="Nome:"
+                android:id="@+id/txtNome"
+                android:layout_height="wrap_content" />
+
+        <EditText
+                android:layout_width="match_parent"
+                android:hint="Nome de usuário:"
+                android:id="@+id/txtUsuario"
+                android:layout_height="wrap_content" />
+
+        <EditText
+                android:layout_width="match_parent"
+                android:hint="e-mail:"
+                android:id="@+id/txtEmail"
+                android:layout_height="wrap_content" />
+
+        <EditText
+                android:layout_width="match_parent"
+                android:hint="Senha:"
+                android:id="@+id/txtSenha"
+                android:inputType="textPassword"
+                android:layout_height="wrap_content" />
+
+        <!--Botões iniciais
+         <Button
+            android:layout_width="wrap_content"
+            android:textAllCaps="false"
+            android:text="Incluir"
+            android:id="@+id/btnIncluir"
+            android:layout_gravity="left"
+            android:layout_height="wrap_content"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:textAllCaps="false"
+            android:text="Limpar"
+            android:id="@+id/btnLimpar"
+            android:layout_gravity="right"
+            android:layout_height="wrap_content" />
+        -->
+        <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout1" android:layout_height="wrap_content">
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:textAllCaps="false"
+                    android:text="Incluir"
+                    android:id="@+id/btnIncluir"
+                    android:layout_gravity="left"
+                    android:layout_height="wrap_content"
+            />
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:textAllCaps="false"
+                    android:text="Limpar"
+                    android:id="@+id/btnLimpar"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
