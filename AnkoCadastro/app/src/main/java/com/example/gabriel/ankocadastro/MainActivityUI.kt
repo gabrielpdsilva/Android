@@ -93,6 +93,7 @@ class MainActivityUI : AnkoComponent<MainActivity> {
                 setOnClickListener(View.OnClickListener {
 
                     toast("botão Listar clicado")
+                    startActivity<ListViewActivity>()
                 })
             }.lparams(){topMargin = dip(6);bottomMargin = dip(6)}
         }
