@@ -62,12 +62,23 @@ class ManterUsuarioActivity : AppCompatActivity() {
             }
             var button: Button = button("Incluir") {
                 setOnClickListener(View.OnClickListener{
-                    var u: Usuario = Usuario(
-                            edNome.text.toString(),
-                            edEmail.text.toString(),
-                            edPass.text.toString()
-                    )
-                    UsuarioRepository(getApplicationContext()).create(u)
+
+                    if(edNome.text.toString().equals("")){
+                        toast("Nenhum campo preenchido!")
+                    }else{
+                        var u: Usuario = Usuario(
+                                edNome.text.toString(),
+                                edEmail.text.toString(),
+                                edPass.text.toString()
+                        )
+
+                        UsuarioRepository(getApplicationContext()).create(u)
+                        toast("toast normal: Usuario Incluido com sucesso")
+                    }
+
+                })
+            }
+
 
     /*                alert(
                             "Usuario Cadastrado com Sucesso",
@@ -76,9 +87,9 @@ class ManterUsuarioActivity : AppCompatActivity() {
                         noButton{}
                     }.show()
 */
-                    toast("toast normal: Usuario Incluido com sucesso")
-                })
-            }
+
+                //    toast("toast normal: Usuario Incluido com sucesso")
+
 
             //******************************BOTÃO LISTAR************************************************************//
             /*
