@@ -11,7 +11,10 @@ import android.widget.Toast
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -52,27 +55,22 @@ class MainActivity : AppCompatActivity() {
         this.btnAlteraSenha = findViewById<Button>(R.id.btnAlteraSenha)
 
         this.btnSignUp.setOnClickListener(View.OnClickListener {
-            toast("this.btnSignUp.setOnClickListener(View.OnClickListener {...")
             this.signUp()
         })
 
         this.btnLogoff.setOnClickListener(View.OnClickListener {
-            toast("this.btnLogoff.setOnClickListener(View.OnClickListener {...")
             this.logoff()
         })
 
         this.btnLogin.setOnClickListener(View.OnClickListener {
-            toast("this.btnLogin.setOnClickListener(View.OnClickListener {...")
             this.login();
         })
 
         this.btnVerifyEmailUser.setOnClickListener(View.OnClickListener {
-            toast("this.btnVerifyEmailUser.setOnClickListener(View.OnClickListener {...")
             this.verifyEmailUser();
         })
 
         this.btnAlteraSenha.setOnClickListener(View.OnClickListener {
-            toast("this.btnAlteraSenha.setOnClickListener(View.OnClickListener {...")
             this.alteraSenha();
         })
 
@@ -93,8 +91,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun logoff() {
-        this.fbAuth.signOut()
-        updateUI(null)
+        alert(
+                "Tem certeza de que deseja fazer logout?",
+                "Logout") {
+            yesButton{ fbAuth.signOut()
+                updateUI(null)
+                toast("Logout realizado com sucesso.")
+            }
+            noButton{toast("Logout cancelado.")}
+        }.show()
+
+        //this.fbAuth.signOut()
+        //updateUI(null)
+
     }
 
     private fun login() {
