@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -85,8 +86,11 @@ class MainActivity : AppCompatActivity() {
     public fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             this.lbEmailDoUsuarioLogado.text = user.email
+            btnLogoff.visibility = View.VISIBLE
         } else {
             this.lbEmailDoUsuarioLogado.text = "Nenhum User Logado"
+            btnLogoff.visibility = View.GONE
+
         }
     }
 

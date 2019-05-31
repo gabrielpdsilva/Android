@@ -10,6 +10,24 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:text="Usuário logado:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="274dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="224dp" android:id="@+id/lbUsuarioLogado"/>
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="311dp"
+            tools:layout_editor_absoluteX="223dp" android:id="@+id/lbEmailDoUsuarioLogado"/>
+        <TextView
+            android:text="lbEmailValidoSera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/lbEmailValidoSera"
+            tools:text="nao sei se o email he valido"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,21 +72,7 @@
             android:text="btnVerifyEmailUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/btnVerifyEmailUser"/>
-        <TextView
-            android:text="Usuario Logado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="274dp"
-            tools:layout_editor_absoluteX="224dp" android:id="@+id/lbUsuarioLogado"/>
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="311dp"
-            tools:layout_editor_absoluteX="223dp" android:id="@+id/lbEmailDoUsuarioLogado"/>
-        <TextView
-            android:text="lbEmailValidoSera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/lbEmailValidoSera"
-            tools:text="nao sei se o email he valido"/>
+
         <Button
             android:text="btnAlteraSenha"
             android:layout_width="match_parent"
