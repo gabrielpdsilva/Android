@@ -12,10 +12,7 @@ import android.widget.Toast
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.toast
-import org.jetbrains.anko.yesButton
+import org.jetbrains.anko.*
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -79,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
-        this.signUp()
+        //this.signUp()
         updateUI(null)
     }
 
@@ -87,9 +84,14 @@ class MainActivity : AppCompatActivity() {
         if (user != null) {
             this.lbEmailDoUsuarioLogado.text = user.email
             btnLogoff.visibility = View.VISIBLE
+            btnSignUp.visibility = View.GONE
+            btnLogin.visibility = View.GONE
         } else {
-            this.lbEmailDoUsuarioLogado.text = "Nenhum User Logado"
+            this.lbEmailDoUsuarioLogado.text = "Nenhum usuário logado."
+            this.lbEmailValidoSera.text = "Nenhum usuário validado."
             btnLogoff.visibility = View.GONE
+            btnSignUp.visibility = View.VISIBLE
+            btnLogin.visibility = View.VISIBLE
 
         }
     }
@@ -100,6 +102,8 @@ class MainActivity : AppCompatActivity() {
                 "Logout") {
             yesButton{ fbAuth.signOut()
                 updateUI(null)
+                txtEmail.text.clear()
+                txtPass.text.clear()
                 toast("Logout realizado com sucesso.")
             }
             noButton{toast("Logout cancelado.")}
@@ -118,13 +122,28 @@ class MainActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         updateUI(this.fbAuth.currentUser)
+                        toast("Usuário logado com sucesso.")
+                    } else if(!task.isSuccessful){
+                        toast("Falha no login")
+
+                    }
+                    else{
+                        toast("Usuário logado com sucesso.")
+                        updateUI(null)
+                    }
+
+                    /*
+                     if (task.isSuccessful) {
+                        updateUI(this.fbAuth.currentUser)
+                        toast("quando???")
                     } else {
-                        toast("Usuario Logado com sucesso")
+                        toast("Usuario logado com sucesso")
                         updateUI(null)
                     }
                     if (!task.isSuccessful) {
                         toast("Falha no login")
                     }
+                    * */
                 }
     }
 
@@ -135,13 +154,14 @@ class MainActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        toast("takswassucessfull")
-                        toast(this.fbAuth.currentUser.toString())
+                        toast("Usuário criado com sucesso.")
+                        longToast("User firebase: ${this.fbAuth.currentUser.toString()}")
                         updateUI(this.fbAuth.currentUser)
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(logTAG, "createUserWithEmail:failure", task.exception)
-                        toast("De uma olhada no LOGCAT que deu erro....")
+                        //Log.w(logTAG, "createUserWithEmail:failure", task.exception)
+                        //toast("De uma olhada no LOGCAT que deu erro....")
+                        toast("Não foi possível cadastrar o usuário.")
                         updateUI(null)
                     }
                 }
@@ -152,41 +172,55 @@ class MainActivity : AppCompatActivity() {
         usuario?.sendEmailVerification()
                 ?.addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        toast("Verificacao de email enviada COM SUCESSO para ${usuario.email} ");
-                        this.lbEmailValidoSera.text = "email valido: ${usuario.email}"
+                        toast("Verificação de email enviada com sucesso para ${usuario.email}.");
+                        this.lbEmailValidoSera.text = "E-mail verificado: ${usuario.email}"
                     } else {
-                        toast("Falha no envio de email de verificacao")
-                        this.lbEmailValidoSera.text = "email INvalido: ${usuario.email}"
+                        longToast("Já enviamos uma verificação para esse e-mail!")
+                        this.lbEmailValidoSera.text = "E-mail: ${usuario.email}"
                     }
                 }
     }
 
-    private fun alteraSenha(){
+    private fun alteraSenha() {
         var strNewPass: String = this.txtNewPass.text.toString();
-        if(strNewPass.length < 6 ){
-            toast("Senha tem que ter pelo menos 6 caracteres...")
+        if (strNewPass.length < 6) {
+            toast("A senha tem que ter pelo menos 6 caracteres...")
             return
-        }
+        } else {
+            alert(
+                    "Tem certeza de que deseja redefinir a senha?",
+                    "Redefinição de senha") {
+                yesButton{
+                    var usuario = fbAuth.currentUser
+                    usuario?.updatePassword(strNewPass)?.addOnCompleteListener {
+                        try {
+                            longToast("Senha alterada com sucesso, faça login novamente.")
+                            txtEmail.text.clear()
+                            txtPass.text.clear()
+                            txtNewPass.text.clear()
+                            updateUI(null)
 
-        var usuario = this.fbAuth.currentUser
-        usuario?.updatePassword(strNewPass)?.addOnCompleteListener {
-            try {
-                toast("Senha alterada com sucesso")
-            }catch (e: Exception){
-                toast("Erra durante o processo de alteracao de senha")
-            }
+                        } catch (e: Exception) {
+                            toast("Erro durante o processo de alteração de senha.")
+                        }
+                    }
+                }
+                noButton{toast("Redefinição cancelada.")}
+            }.show()
+
+
         }
     }
 
 
     private fun formIsValid() : Boolean {
-        toast("private fun formIsValid() : Boolean {...")
+        toast("Função formIsValid rodando...")
         var ret = true
         val email: String = this.txtEmail.text.toString()
         val pass: String = this.txtPass.text.toString()
 
         if (email.equals("") || pass.equals("")) {
-            toast("ou email ou senha estao em branco e nao pode...")
+            toast("E-mail e/ou senha está em branco.")
             ret = false
         } else if (pass.length < 6) {
             toast("A senha precisa ter pelo menos 6 caracteres...")

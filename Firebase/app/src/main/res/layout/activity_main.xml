@@ -11,32 +11,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:text="Usuário logado:"
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="274dp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="224dp" android:id="@+id/lbUsuarioLogado"/>
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="311dp"
-            tools:layout_editor_absoluteX="223dp" android:id="@+id/lbEmailDoUsuarioLogado"/>
-        <TextView
-            android:text="lbEmailValidoSera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/lbEmailValidoSera"
-            tools:text="nao sei se o email he valido"/>
+            android:layout_height="20dp">
+
+            <TextView
+                android:text="User logado: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:layout_editor_absoluteY="274dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="224dp" android:id="@+id/lbUsuarioLogado"/>
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:layout_editor_absoluteY="311dp"
+                tools:layout_editor_absoluteX="223dp" android:id="@+id/lbEmailDoUsuarioLogado"
+                tools:text="Nenhum usuário logado no momento."/>
+
+        </LinearLayout>
+
+            <TextView
+                android:text="lbEmailValidoSera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/lbEmailValidoSera"
+                tools:text="E-mail não validado."/>
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text="Nome:"
             android:ems="10"
             android:id="@+id/lbEmail"/>
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
@@ -45,15 +57,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Senha"
+            android:text="Senha:"
             android:ems="10"
             android:id="@+id/lbSenha"/>
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
             tools:layout_editor_absoluteY="177dp" tools:layout_editor_absoluteX="41dp" android:id="@+id/txtPassw"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
         <Button
             android:text="SignUp e Login"
             android:layout_width="wrap_content"
@@ -61,25 +78,31 @@
             tools:layout_editor_absoluteX="39dp" android:id="@+id/btnSingUp"/>
         <Button
             android:text="Login"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="323dp"
             tools:layout_editor_absoluteX="41dp" android:id="@+id/btnLogin"/>
         <Button
             android:text="Logout"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content" android:id="@+id/btnLoggof"/>
-        <Button
-            android:text="btnVerifyEmailUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/btnVerifyEmailUser"/>
 
-        <Button
-            android:text="btnAlteraSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/btnAlteraSenha"/>
+    </LinearLayout>
+
+            <Button
+                android:text="Verificar e-mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnVerifyEmailUser"/>
+
+            <Button
+                android:text="Mudar Senha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnAlteraSenha"/>
+
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Digite a nova senha aqui..."
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/txtNovaSenha"/>
